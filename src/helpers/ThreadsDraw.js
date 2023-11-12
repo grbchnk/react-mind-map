@@ -10,7 +10,7 @@ export default class ThreadsDraw {
 
     this.mouse = { x: 0, y: 0 }
 
-    this.canvas.addEventListener("mousemove", (e) => {
+    document.addEventListener("mousemove", (e) => {
       this.mouse.x = e.clientX
       this.mouse.y = e.clientY
     })
