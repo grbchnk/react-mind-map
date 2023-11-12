@@ -1,0 +1,19 @@
+.control-bar {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 10px 30px;
+  align-items: center;
+
+  background-color: #fff;
+  border: 1px solid #4c2cbf;
+  border-radius: 500px;
+  box-shadow: 0 3px 10px 0px rgba(14, 47, 115, 0.2);
+
+  /* width: 500px; */
+}

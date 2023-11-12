@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import Canvas from "./components/Canvas"
+import NodeList from "./components/NodeList"
+import ControlBar from "./components/UI/ControlBar"
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h2>Hello World</h2>
       </header>
+      <NodeList />
+      <ControlBar />
+      {console.log("Создался App.js")}
+      <Canvas />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
