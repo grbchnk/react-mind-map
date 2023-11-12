@@ -72,13 +72,14 @@ export default class ThreadsDraw {
     const endY =
       dy === 0 ? midY2 : midY1 < midY2 ? rect2.y : rect2.y + rect2.height
 
-    const direction =
-      startX < midX1 ? "слева" : startX > midX1 ? "Справа" : "по центру"
+    // const directionX =
+    //   startX < midX1 ? "слева" : startX > midX1 ? "Справа" : "по центру"
+    // const directionY =
+    //   startY < midY1 ? "сверху" : startY > midY1 ? "снизу" : "по центру"
 
     return [
       { x: startX, y: startY },
       { x: endX || this.mouse.x, y: endY || this.mouse.y },
-      { direction },
     ]
   }
 
@@ -88,12 +89,11 @@ export default class ThreadsDraw {
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
     for (let thread of threads) {
-      const [start, end, direction] = this.calculateThreadCoords(
+      const [start, end] = this.calculateThreadCoords(
         document.getElementById(thread.start).getBoundingClientRect(),
         document.getElementById(thread.end)?.getBoundingClientRect()
       )
       const grad = ctx.createLinearGradient(start.x, start.y, end.x, end.y)
-      console.log(direction)
       grad.addColorStop(
         0,
         document.getElementById(thread.start).style.borderColor
