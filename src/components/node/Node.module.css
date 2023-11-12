@@ -1,12 +1,13 @@
 .node {
   user-select: none;
-  position: absolute;
+  position: fixed;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 3px 10px 0px rgba(14, 47, 115, 0.2);
   max-width: 200px;
   min-width: 150px;
   background-color: #fff;
+  border: 3px solid;
 }
 
 .node__header {
@@ -29,9 +30,12 @@
 .node__content {
   font-size: 12px;
   height: auto;
-  /* max-height: 150px; */
+  max-height: 200px;
   overflow: hidden;
   overflow-y: scroll;
+}
+.node__content p {
+  padding: 5px 10px;
 }
 
 .node__content::-webkit-scrollbar-thumb {
@@ -40,10 +44,6 @@
 
 .node__content::-webkit-scrollbar {
   width: 5px;
-}
-
-.node__content p {
-  padding: 5px 10px;
 }
 
 .node__info {

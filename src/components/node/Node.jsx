@@ -52,7 +52,7 @@ const Node = (props) => {
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
-        border: `2px solid ${props.color}`,
+        borderColor: props.color,
       }}
       id={`node_${props.id}`}
       onMouseEnter={moveNodeUp}
