@@ -5,6 +5,7 @@ const Canvas = () => {
   const threads = useSelector((state) => state.threads.threads)
   const threadsDraw = ThreadsDraw.getInstance()
   threadsDraw.start(threads)
+  console.log("Создался Canvas")
 
   return (
     <div>

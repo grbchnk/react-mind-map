@@ -10,7 +10,7 @@ function App() {
       </header>
       <NodeList />
       <ControlBar />
-      {console.log("Создался App.js")}
+      {console.log("Создался App")}
       <Canvas />
     </div>
   )

@@ -36,7 +36,7 @@ const Node = (props) => {
         y: prevPosition.y + e.movementY,
       }))
     }
-
+    console.log("drag id " + props.id)
     document.addEventListener("mousemove", handleMouseMove)
     document.addEventListener("mouseup", stopDrag)
 
