@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import styles from "./Node.module.css"
 import { useDispatch } from "react-redux"
 import { moveNode } from "../../redux/nodeSlice"
+import { startDrawingTimer, stopDrawingTimer } from "../../redux/threadSlice"
 import NodeHeader from "./NodeHeader"
 
 const Node = (props) => {
@@ -9,8 +10,6 @@ const Node = (props) => {
   const dispatch = useDispatch()
   const [contentVisible, setContentVisible] = useState(true)
   const [dragging, setDragging] = useState(false)
-
-  // console.log("Create Node id:" + props.id)
 
   const handleClickVisible = () => {
     setContentVisible(!contentVisible)
@@ -22,10 +21,12 @@ const Node = (props) => {
 
   const startDrag = () => {
     setDragging(true)
+    dispatch(startDrawingTimer())
   }
 
   const stopDrag = () => {
     setDragging(false)
+    dispatch(stopDrawingTimer())
   }
 
   useEffect(() => {
@@ -36,14 +37,13 @@ const Node = (props) => {
         y: prevPosition.y + e.movementY,
       }))
     }
-    console.log("drag id " + props.id)
     document.addEventListener("mousemove", handleMouseMove)
     document.addEventListener("mouseup", stopDrag)
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove)
       document.removeEventListener("mouseup", stopDrag)
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dragging])
 
   return (

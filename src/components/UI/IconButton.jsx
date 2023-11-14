@@ -7,6 +7,7 @@ const IconButton = (props) => {
 
   return (
     <Icon
+      onMouseDown={props.onMouseDown}
       onClick={props.onClick}
       className={props.className}
       size={props.size}

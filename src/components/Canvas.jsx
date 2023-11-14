@@ -2,10 +2,17 @@ import { useSelector } from "react-redux"
 import ThreadsDraw from "../helpers/ThreadsDraw"
 
 const Canvas = () => {
-  const threads = useSelector((state) => state.threads.threads)
   const threadsDraw = ThreadsDraw.getInstance()
-  threadsDraw.start(threads)
-  console.log("Создался Canvas")
+  const threads = useSelector((state) => state.threads.threads)
+  const isDrawingTimerRunning = useSelector(
+    (state) => state.threads.isDrawingTimerRunning
+  )
+
+  if (isDrawingTimerRunning) {
+    threadsDraw.start(threads)
+  } else {
+    threadsDraw.stop(threads)
+  }
 
   return (
     <div>

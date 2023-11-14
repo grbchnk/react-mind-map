@@ -9,46 +9,44 @@ export default class ThreadsDraw {
     document.body.appendChild(this.canvas)
 
     this.mouse = { x: 0, y: 0 }
-
     document.addEventListener("mousemove", (e) => {
       this.mouse.x = e.clientX
       this.mouse.y = e.clientY
     })
     this.interval = null
-    this.prevThreads = null
   }
 
-  calculateThreadCoords(rect1, rect2) {
-    if (!rect2) {
-      const dx =
-        rect1.x < this.mouse.x
-          ? this.mouse.x - (rect1.x + rect1.width)
-          : rect1.x - this.mouse.x
+  calculateCoordsWithMouse(rect1) {
+    const dx =
+      rect1.x < this.mouse.x
+        ? this.mouse.x - (rect1.x + rect1.width)
+        : rect1.x - this.mouse.x
 
-      const dy =
-        rect1.y < this.mouse.y
-          ? this.mouse.y - (rect1.y + rect1.height)
-          : rect1.y - this.mouse.y
+    const dy =
+      rect1.y < this.mouse.y
+        ? this.mouse.y - (rect1.y + rect1.height)
+        : rect1.y - this.mouse.y
 
-      const startX =
-        dx <= 0
-          ? this.mouse.x
-          : rect1.x < this.mouse.x
-          ? rect1.x + rect1.width
-          : rect1.x
-      const startY =
-        dy <= 0
-          ? this.mouse.y
-          : rect1.y < this.mouse.y
-          ? rect1.y + rect1.height
-          : rect1.y
+    const startX =
+      dx <= 0
+        ? this.mouse.x
+        : rect1.x < this.mouse.x
+        ? rect1.x + rect1.width
+        : rect1.x
+    const startY =
+      dy <= 0
+        ? this.mouse.y
+        : rect1.y < this.mouse.y
+        ? rect1.y + rect1.height
+        : rect1.y
 
-      return [
-        { x: startX, y: startY },
-        { x: this.mouse.x, y: this.mouse.y },
-      ]
-    }
+    return [
+      { x: startX, y: startY },
+      { x: this.mouse.x, y: this.mouse.y },
+    ]
+  }
 
+  calculateCoordsWithRect(rect1, rect2) {
     const midX1 = rect1.x + rect1.width / 2
     const midY1 = rect1.y + rect1.height / 2
     const midX2 = rect2.x + rect2.width / 2
@@ -89,10 +87,15 @@ export default class ThreadsDraw {
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
     for (let thread of threads) {
-      const [start, end] = this.calculateThreadCoords(
-        document.getElementById(thread.start).getBoundingClientRect(),
-        document.getElementById(thread.end)?.getBoundingClientRect()
-      )
+      const rect1 = document
+        .getElementById(thread.start)
+        .getBoundingClientRect()
+      const rect2 = document.getElementById(thread.end)?.getBoundingClientRect()
+
+      const [start, end] = rect2
+        ? this.calculateCoordsWithRect(rect1, rect2)
+        : this.calculateCoordsWithMouse(rect1)
+
       const grad = ctx.createLinearGradient(start.x, start.y, end.x, end.y)
       grad.addColorStop(
         0,
@@ -121,13 +124,18 @@ export default class ThreadsDraw {
     }
   }
 
+  stop(threads) {
+    this.draw(threads)
+    clearInterval(this.interval)
+  }
+
   start(threads) {
-    if (threads.length > 0 && threads !== this.prevThreads) {
-      this.prevThreads = threads
+    if (threads.length > 0) {
       if (this.interval) {
         clearInterval(this.interval)
       }
       this.interval = setInterval(() => {
+        console.log("Таймер")
         this.draw(threads)
       }, 10)
     }
