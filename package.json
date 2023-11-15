@@ -22,7 +22,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "pg-pages -d bulid",
+    "deploy": "gh-pages -d bulid",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
