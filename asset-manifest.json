@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-mind-map/static/css/main.05f38d7d.css",
+    "main.js": "/react-mind-map/static/js/main.a1867102.js",
+    "index.html": "/react-mind-map/index.html",
+    "main.05f38d7d.css.map": "/react-mind-map/static/css/main.05f38d7d.css.map",
+    "main.a1867102.js.map": "/react-mind-map/static/js/main.a1867102.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.05f38d7d.css",
+    "static/js/main.a1867102.js"
+  ]
+}
