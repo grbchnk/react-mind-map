@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import styles from "./Node.module.css"
 import { useDispatch } from "react-redux"
 import { moveNode } from "../../redux/nodeSlice"
@@ -10,6 +10,7 @@ const Node = (props) => {
   const dispatch = useDispatch()
   const [contentVisible, setContentVisible] = useState(true)
   const [dragging, setDragging] = useState(false)
+  const nodeRef = useRef(null)
 
   const handleClickVisible = () => {
     setContentVisible(!contentVisible)
@@ -56,6 +57,7 @@ const Node = (props) => {
       }}
       id={`node_${props.id}`}
       onMouseEnter={moveNodeUp}
+      ref={nodeRef}
     >
       <NodeHeader
         id={props.id}

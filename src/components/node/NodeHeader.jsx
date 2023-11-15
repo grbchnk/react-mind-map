@@ -55,6 +55,9 @@ const NodeHeader = (props) => {
         <IconButton
           className={styles["node__header__icon-button"]}
           onClick={props.handleClickVisible}
+          onMouseDown={(event) => {
+            event.stopPropagation()
+          }}
           icon={
             props.contentVisible ? RiFolderUploadLine : RiFolderDownloadLine
           }
